@@ -1,6 +1,10 @@
 package com.gildedrose;
 
 class GildedRose {
+
+    public static final int HIGHEST_QUALITY = 50;
+    public static final int LOWEST_QUALITY = 0;
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -8,55 +12,73 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
+        for (Item currentItem : items) {
+            switch (currentItem.name) {
+                case "Aged Brie":
+                    updateAgedBrieQuality(currentItem);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    updateBackstagePassesQuality(currentItem);
+                    break;
+                case "Sulfuras, Hand of Ragnaros":
+                    break;
+                default:
+                    updateCommonItemQuality(currentItem);
+                    break;
             }
+        }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
+    }
 
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
+    private void updateCommonItemQuality(Item currentItem) {
+        if (currentItem.quality > 0) {
+            decreaseQuality(currentItem);
+        }
+        decreaseSellIn(currentItem);
+        if (passedSellIn(currentItem)) {
+            decreaseQuality(currentItem);
+        }
+    }
+
+    private void updateAgedBrieQuality(Item currentItem) {
+        increaseQuality(currentItem);
+        decreaseSellIn(currentItem);
+        if (passedSellIn(currentItem)) {
+            increaseQuality(currentItem);
+        }
+    }
+
+    private void updateBackstagePassesQuality(Item currentItem) {
+        increaseQuality(currentItem);
+        if (currentItem.sellIn < 11) {
+            increaseQuality(currentItem);
+        }
+        if (currentItem.sellIn < 6) {
+            increaseQuality(currentItem);
+        }
+        decreaseSellIn(currentItem);
+        if (passedSellIn(currentItem)) {
+            currentItem.quality = 0;
+        }
+    }
+
+    private boolean passedSellIn(Item item) {
+        return item.sellIn < 0;
+    }
+
+    private void decreaseSellIn(Item item) {
+        item.sellIn--;
+    }
+
+    private void increaseQuality(Item item) {
+        if (item.quality < HIGHEST_QUALITY) {
+            item.quality++;
+        }
+    }
+
+    private void decreaseQuality(Item item) {
+        if (item.quality > LOWEST_QUALITY) {
+            item.quality--;
         }
     }
 }

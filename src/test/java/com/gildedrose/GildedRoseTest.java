@@ -15,7 +15,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf_0_Stays_0_whenSellinPassed() {
+    void qualityOf0Stays0whenSellinPassed() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
