@@ -10,14 +10,6 @@ public class ConjuredItemUpdater implements ItemUpdater {
         decreaseSellIn(item);
     }
 
-    private boolean passedSellIn(Item item) {
-        return item.sellIn < 0;
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
     private void decreaseQuality(Item item) {
         item.quality -= getDegradationFactor(item);
     }

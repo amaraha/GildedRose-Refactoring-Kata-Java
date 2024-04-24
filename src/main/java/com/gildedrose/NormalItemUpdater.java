@@ -15,14 +15,6 @@ public class NormalItemUpdater implements ItemUpdater {
         }
     }
 
-    private boolean passedSellIn(Item item) {
-        return item.sellIn < 0;
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn--;
-    }
-
     private void decreaseQuality(Item item) {
         if (item.quality > LOWEST_QUALITY) {
             item.quality--;

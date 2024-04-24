@@ -19,14 +19,6 @@ public class BackstagePassesItemUpdater implements ItemUpdater {
         }
     }
 
-    private boolean passedSellIn(Item item) {
-        return item.sellIn < 0;
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn--;
-    }
-
     private void increaseQuality(Item item) {
         if (item.quality < HIGHEST_QUALITY) {
             item.quality++;
