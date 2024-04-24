@@ -10,22 +10,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item currentItem : items) {
-            switch (currentItem.name) {
-                case "Aged Brie":
-                    new AgedBrieItemUpdater().update(currentItem);
-                    break;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    new BackstagePassesItemUpdater().update(currentItem);
-                    break;
-                case "Sulfuras, Hand of Ragnaros":
-                    new SulfurasItemUpdater().update(currentItem);
-                    break;
-                default:
-                    new NormalItemUpdater().update(currentItem);
-                    break;
-            }
+            ItemUpdaterFactory.updaterFor(currentItem).update(currentItem);
         }
-
     }
 
 }
