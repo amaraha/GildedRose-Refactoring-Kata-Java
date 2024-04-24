@@ -5,6 +5,7 @@ public class ItemUpdaterFactory {
     private final static String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private final static String AGE_BRIE = "Aged Brie";
     private final static String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private final static String CONJURED = "Conjured";
 
 
     public static ItemUpdater updaterFor(Item currentItem) {
@@ -15,6 +16,8 @@ public class ItemUpdaterFactory {
             itemUpdater = new BackstagePassesItemUpdater();
         } else if (isSulfurasItem(currentItem.name)) {
             itemUpdater = new SulfurasItemUpdater();
+        } else if (isConjuredItem(currentItem.name)) {
+            itemUpdater = new ConjuredItemUpdater();
         } else {
             itemUpdater = new NormalItemUpdater();
         }
@@ -33,9 +36,12 @@ public class ItemUpdaterFactory {
         return nameMatches(itemName, SULFURAS);
     }
 
+    private static boolean isConjuredItem(String itemName) {
+        return nameMatches(itemName, CONJURED);
+    }
 
     private static boolean nameMatches(String itemName, String s) {
-        return s.contains(itemName);
+        return itemName != null && itemName.contains(s);
     }
 
 }
