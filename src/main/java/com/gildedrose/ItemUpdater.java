@@ -11,4 +11,11 @@ public interface ItemUpdater {
     default void decreaseSellIn(Item item) {
         item.sellIn--;
     }
+
+    default void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality++;
+        }
+    }
+
 }

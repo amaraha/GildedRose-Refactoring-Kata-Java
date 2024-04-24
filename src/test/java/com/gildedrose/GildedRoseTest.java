@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     @Test
-    void nameStaysTheSameWhenUpdatingQuality() {
+    void nameStaysTheSame_WhenUpdatingQuality() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -15,7 +15,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf0Stays0whenSellinPassed() {
+    void qualityOf0Stays0_whenSellinPassed() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -23,7 +23,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf0Stays0whileSellin() {
+    void qualityOf0Stays0_whileSellin() {
         Item[] items = new Item[] { new Item("foo", 1, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -31,7 +31,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf50Becomes48whenSellinPassed() {
+    void qualityOf50Becomes48_whenSellinPassed() {
         Item[] items = new Item[] { new Item("foo", -1, 50) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -39,7 +39,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf50Becomes49whileInSellin() {
+    void qualityOf50Becomes49_whileInSellin() {
         Item[] items = new Item[] { new Item("foo", 1, 50) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -55,7 +55,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOf51Becomes50whileInSellin() {
+    void qualityOf51Becomes50_whileInSellin() {
         Item[] items = new Item[] { new Item("foo", 1, 51) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -72,7 +72,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void agedBrieIncreasesQualityWhenOlder() {
+    void agedBrieIncreasesQuality_WhenOlder() {
         Item[] items = new Item[] { new Item("Aged Brie", 2, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -97,7 +97,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void backstagePassesIncreasesQualityBy2When10daysFromSellin() {
+    void backstagePassesIncreasesQualityBy2_When10daysFromSellin() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -105,7 +105,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void backstagePassesIncreasesQualityBy2When10daysFromSellinUnless50() {
+    void backstagePassesIncreasesQualityBy2_When10daysFromSellinUnless50() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -113,7 +113,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void backstagePassesIncreasesQualityBy3When5daysFromSellin() {
+    void backstagePassesIncreasesQualityBy3_When5daysFromSellin() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -121,7 +121,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void backstagePassesIncreasesQualityBy3When5daysFromSellinUnless50() {
+    void backstagePassesIncreasesQualityBy3_When5daysFromSellinUnless50() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
